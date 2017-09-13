@@ -1,6 +1,13 @@
 import { Dialog, Toast } from 'quasar';
+import Location from 'models/location';
 
-export function addLocation() {
+export function loadLocations({ commit }) {
+  Location.find({}, (err, docs)=> {
+    commit('setLocations', docs);
+  });
+}
+
+export function addLocation({ commit  }) {
   const options = {
     title: 'Thêm khu trọ',
     message: 'Vui lòng nhập thông tin khu trọ bạn muốn thêm bên dưới.',
@@ -32,9 +39,13 @@ export function addLocation() {
       {
         label: 'Lưu',
         preventClose: true,
-        handler (data, close) {
-          Toast.create('Returned ' + JSON.stringify(data))
-          close();
+        handler (doc, close) {
+          Location.insert(doc, (err, newDoc) => {
+            commit('addLocation', newDoc);
+            close();
+          });
+          // Toast.create('Returned ' + JSON.stringify(data))
+          // close();
         }
       }
     ]

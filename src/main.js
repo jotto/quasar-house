@@ -3,7 +3,9 @@
 // 1. use next line to activate CUSTOM STYLE (./src/themes)
 // require(`./themes/app.${__THEME}.styl`)
 // 2. or, use next line to activate DEFAULT QUASAR STYLE
-require(`quasar/dist/quasar.${__THEME}.css`)
+require(`quasar/dist/quasar.${__THEME}.css`);
+import 'assets/main.styl';
+
 // ==============================
 
 // Uncomment the following lines if you need IE11/Edge support
@@ -25,6 +27,7 @@ import 'quasar-extras/material-icons';
 import 'quasar-extras/ionicons';
 // import 'quasar-extras/fontawesome';
 // import 'quasar-extras/animate'
+
 
 Quasar.start(() => {
   /* eslint-disable no-new */
